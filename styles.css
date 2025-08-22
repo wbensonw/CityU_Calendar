@@ -1,0 +1,725 @@
+/* 全局樣式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 主要顏色 - 糖果色調 */
+    --primary-pink: #FFB3BA;
+    --primary-blue: #BAE1FF;
+    --primary-green: #B3FFB3;
+    --primary-yellow: #FFFFBA;
+    --primary-purple: #E6B3FF;
+    --primary-orange: #FFD1B3;
+    
+    /* 課程顏色 */
+    --course-dns001: #FF6B9D;  /* 粉紅 */
+    --course-dns002: #4ECDC4;  /* 青綠 */
+    --course-dns003: #45B7D1;  /* 藍色 */
+    --course-dns016: #F9CA24;  /* 黃色 */
+    
+    /* 系統顏色 */
+    --weekend-color: #E9ECEF;
+    --holiday-color: #FFE5E5;
+    --today-color: #007AFF;
+    --event-color: #FF9500;
+    
+    /* 中性顏色 */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --text-primary: #1D1D1F;
+    --text-secondary: #86868B;
+    --border-color: #E5E5E7;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    
+    /* 字體 */
+    --font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* 圓角 */
+    --radius-small: 8px;
+    --radius-medium: 12px;
+    --radius-large: 16px;
+    
+    /* 間距 */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+/* 頁面標題 */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.header-content {
+    background: var(--bg-primary);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-large);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.title i {
+    color: var(--course-dns001);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* 主要內容區域 */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: var(--spacing-xl);
+}
+
+/* 月曆容器 */
+.calendar-container {
+    background: var(--bg-primary);
+    border-radius: var(--radius-large);
+    padding: var(--spacing-xl);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+/* 月曆標題 */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.month-info {
+    text-align: center;
+}
+
+.month-year {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.current-date {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* 星期標題 */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: var(--spacing-md);
+}
+
+.weekday {
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: var(--spacing-md);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* 日期網格 */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-height: 60px;
+    background: var(--bg-primary);
+}
+
+.day:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.day.other-month {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.day.weekend {
+    background: var(--weekend-color);
+    color: var(--text-secondary);
+}
+
+.day.holiday {
+    background: var(--holiday-color);
+    color: var(--course-dns001);
+    font-weight: 600;
+}
+
+.day.today {
+    background: var(--today-color);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.4);
+}
+
+.day.event {
+    background: var(--event-color);
+    color: white;
+    font-weight: 600;
+}
+
+/* 課程標記容器 */
+.day-indicators {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    justify-content: center;
+    align-items: flex-end;
+    max-height: 12px;
+    overflow: hidden;
+}
+
+.course-indicator {
+    height: 3px;
+    min-width: 8px;
+    flex: 1;
+    max-width: 20px;
+    border-radius: 1.5px;
+    transition: all 0.3s ease;
+}
+
+/* 課程顏色指示器 */
+.course-indicator.dns001 {
+    background: var(--course-dns001);
+    box-shadow: 0 0 3px rgba(255, 107, 157, 0.5);
+}
+
+.course-indicator.dns002 {
+    background: var(--course-dns002);
+    box-shadow: 0 0 3px rgba(78, 205, 196, 0.5);
+}
+
+.course-indicator.dns003 {
+    background: var(--course-dns003);
+    box-shadow: 0 0 3px rgba(69, 183, 209, 0.5);
+}
+
+.course-indicator.dns016 {
+    background: var(--course-dns016);
+    box-shadow: 0 0 3px rgba(249, 202, 36, 0.5);
+}
+
+/* 其他活動指示器 */
+.course-indicator.event {
+    background: var(--event-color);
+    box-shadow: 0 0 3px rgba(255, 149, 0, 0.5);
+}
+
+/* Hover效果 */
+.day:hover .course-indicator {
+    height: 4px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 側邊欄 */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.courses-section,
+.legend-section,
+.resources-section {
+    background: var(--bg-primary);
+    border-radius: var(--radius-large);
+    padding: var(--spacing-lg);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* 課程列表 */
+.course-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.course-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-medium);
+    background: var(--bg-secondary);
+    transition: all 0.3s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.course-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.course-dns001 .course-color {
+    background: var(--course-dns001);
+}
+
+.course-dns002 .course-color {
+    background: var(--course-dns002);
+}
+
+.course-dns003 .course-color {
+    background: var(--course-dns003);
+}
+
+.course-dns016 .course-color {
+    background: var(--course-dns016);
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.course-title {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.course-schedule {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* 資源連結樣式 */
+.resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.resource-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-medium);
+    background: var(--bg-secondary);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.resource-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+    border-color: var(--course-dns001);
+    background: linear-gradient(135deg, var(--bg-secondary), #FFF8FB);
+}
+
+.resource-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--course-dns001), var(--course-dns002));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.resource-info {
+    flex: 1;
+}
+
+.resource-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.resource-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.resource-action {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.resource-link:hover .resource-action {
+    color: var(--course-dns001);
+    transform: translateX(2px);
+}
+
+/* 圖例 */
+.legend-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-small);
+    flex-shrink: 0;
+}
+
+.legend-color.weekend {
+    background: var(--weekend-color);
+    border: 1px solid var(--border-color);
+}
+
+.legend-color.holiday {
+    background: var(--holiday-color);
+}
+
+.legend-color.today {
+    background: var(--today-color);
+}
+
+.legend-color.event {
+    background: var(--event-color);
+}
+
+/* 彈窗樣式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--bg-primary);
+    border-radius: var(--radius-large);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        order: -1;
+    }
+    
+    .courses-section,
+    .legend-section {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .calendar-container {
+        padding: var(--spacing-md);
+    }
+    
+    .month-year {
+        font-size: 1.5rem;
+    }
+    
+    .day {
+        min-height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .weekday {
+        padding: var(--spacing-sm);
+        font-size: 0.8rem;
+    }
+    
+    .sidebar {
+        flex-direction: row;
+        gap: var(--spacing-md);
+        flex-wrap: wrap;
+    }
+    
+    .courses-section {
+        flex: 2;
+        min-width: 300px;
+    }
+    
+    .resources-section,
+    .legend-section {
+        flex: 1;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        flex-direction: column;
+    }
+    
+    .calendar-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .day {
+        min-height: 45px;
+        font-size: 0.85rem;
+    }
+    
+    .course-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .course-info {
+        text-align: left;
+    }
+    
+    .resource-link {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .resource-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .resource-info h4 {
+        font-size: 1rem;
+    }
+    
+    .resource-info p {
+        font-size: 0.85rem;
+    }
+}
+
+/* 動畫效果 */
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 加載狀態 */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* 焦點狀態 */
+.day:focus,
+.nav-btn:focus,
+.modal-close:focus {
+    outline: 2px solid var(--today-color);
+    outline-offset: 2px;
+}
+
+/* 高對比度模式支持 */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000000;
+        --text-secondary: #000000;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}

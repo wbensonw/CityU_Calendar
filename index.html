@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳門城市大學數據科學博士課程月曆</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-calendar-alt"></i>
+                    數據科學博士課程月曆
+                </h1>
+                <p class="subtitle">澳門城市大學 • 2025-2026學年</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="calendar-container">
+                <!-- 月份導航 -->
+                <div class="calendar-header">
+                    <button class="nav-btn prev-btn" id="prevMonth">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="month-info">
+                        <h2 class="month-year" id="monthYear">八月 2025</h2>
+                        <div class="current-date" id="currentDate"></div>
+                    </div>
+                    <button class="nav-btn next-btn" id="nextMonth">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- 星期標題 -->
+                <div class="weekdays">
+                    <div class="weekday">日</div>
+                    <div class="weekday">一</div>
+                    <div class="weekday">二</div>
+                    <div class="weekday">三</div>
+                    <div class="weekday">四</div>
+                    <div class="weekday">五</div>
+                    <div class="weekday">六</div>
+                </div>
+
+                <!-- 日期網格 -->
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- 日期將通過JavaScript動態生成 -->
+                </div>
+            </div>
+
+            <!-- 課程資訊側邊欄 -->
+            <div class="sidebar">
+                <div class="courses-section">
+                    <h3 class="section-title">課程資訊</h3>
+                    <div class="course-list">
+                        <div class="course-item course-dns001">
+                            <div class="course-color"></div>
+                            <div class="course-info">
+                                <h4 class="course-name">DNS001</h4>
+                                <p class="course-title">數據科學前沿分析研究</p>
+                                <p class="course-schedule">星期二 09:00-12:00</p>
+                            </div>
+                        </div>
+                        <div class="course-item course-dns002">
+                            <div class="course-color"></div>
+                            <div class="course-info">
+                                <h4 class="course-name">DNS002</h4>
+                                <p class="course-title">數據挖掘理論、系統與技術</p>
+                                <p class="course-schedule">星期四 15:30-18:30</p>
+                            </div>
+                        </div>
+                        <div class="course-item course-dns003">
+                            <div class="course-color"></div>
+                            <div class="course-info">
+                                <h4 class="course-name">DNS003</h4>
+                                <p class="course-title">大數據決策與應用</p>
+                                <p class="course-schedule">星期一 12:15-15:15</p>
+                            </div>
+                        </div>
+                        <div class="course-item course-dns016">
+                            <div class="course-color"></div>
+                            <div class="course-info">
+                                <h4 class="course-name">DNS016</h4>
+                                <p class="course-title">智慧城市發展的數據建築</p>
+                                <p class="course-schedule">星期五 09:00-12:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-file-pdf"></i>
+                        相關資源
+                    </h3>
+                    <div class="resources-list">
+                        <a href="pdf/2025-2026學年校曆.pdf" class="resource-link" target="_blank">
+                            <div class="resource-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h4>2025-2026學年校曆</h4>
+                                <p>澳門城市大學官方校曆</p>
+                            </div>
+                            <div class="resource-action">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                        <a href="pdf/數據科學博士學位2025-2026學年第一學期課表(DDS博士一年級).pdf" class="resource-link" target="_blank">
+                            <div class="resource-icon">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h4>DDS博士課程表</h4>
+                                <p>第一學期完整課程時間表</p>
+                            </div>
+                            <div class="resource-action">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="legend-section">
+                    <h3 class="section-title">圖例說明</h3>
+                    <div class="legend-list">
+                        <div class="legend-item">
+                            <div class="legend-color weekend"></div>
+                            <span>週末</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color holiday"></div>
+                            <span>假期</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color today"></div>
+                            <span>今天</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color event"></div>
+                            <span>學校活動</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 事件詳情彈窗 -->
+        <div class="modal" id="eventModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle">事件詳情</h3>
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- 事件詳情內容 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
