@@ -122,6 +122,12 @@ class CalendarApp {
             this.navigateMonth(1);
         });
         
+        // 返回今天按鈕
+        document.getElementById('todayBtn').addEventListener('click', (e) => {
+            this.createRippleEffect(e);
+            this.goToToday();
+        });
+        
         // 模態框關閉
         document.getElementById('modalClose').addEventListener('click', () => {
             this.closeModal();
@@ -163,6 +169,56 @@ class CalendarApp {
         }
         
         this.renderCalendar();
+    }
+    
+    createRippleEffect(event) {
+        const button = event.currentTarget;
+        const ripple = button.querySelector('.today-btn-ripple');
+        
+        // 重設漣漪效果
+        ripple.style.width = '0';
+        ripple.style.height = '0';
+        
+        // 強制重繪
+        ripple.offsetHeight;
+        
+        // 觸發漣漪動畫
+        setTimeout(() => {
+            ripple.style.width = '200px';
+            ripple.style.height = '200px';
+        }, 10);
+        
+        // 動畫結束後重設
+        setTimeout(() => {
+            ripple.style.width = '0';
+            ripple.style.height = '0';
+        }, 600);
+    }
+    
+    goToToday() {
+        const today = new Date();
+        this.currentYear = today.getFullYear();
+        this.currentMonth = today.getMonth();
+        
+        // 限制顯示範圍：2025年8月到12月
+        if (this.currentYear < 2025 || (this.currentYear === 2025 && this.currentMonth < 7)) {
+            this.currentYear = 2025;
+            this.currentMonth = 7;
+        } else if (this.currentYear > 2025 || (this.currentYear === 2025 && this.currentMonth > 11)) {
+            this.currentYear = 2025;
+            this.currentMonth = 11;
+        }
+        
+        this.renderCalendar();
+        
+        // 添加一個小動畫效果提示用戶已跳轉到今天
+        const todayElement = document.querySelector('.day.today');
+        if (todayElement) {
+            todayElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                todayElement.style.transform = '';
+            }, 300);
+        }
     }
     
     renderCalendar() {
